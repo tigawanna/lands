@@ -8,15 +8,13 @@ export interface IFormInputs {
   optional?: boolean;
 }
 
-interface FormInputsProps<T> {
+interface FormInputsProps<T> extends React.InputHTMLAttributes<HTMLInputElement> {
   inputs: IFormInputs[];
   values: T;
-  handleChange: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+
 }
 
-export function TheFormInputs<T>({inputs,handleChange,values}: FormInputsProps<T>) {
+export function TheFormInputs<T>({inputs,values,...props}: FormInputsProps<T>) {
 
 if (inputs.length < 1) return null;
 return (
@@ -39,7 +37,7 @@ return (
               type={inpt.type}
               autoCapitalize="none"
               autoCorrect="off"
-              onChange={handleChange}
+              onChange={props.onChange}
             />
           </div>
         );

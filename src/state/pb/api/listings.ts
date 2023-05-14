@@ -135,9 +135,9 @@ export const getPbListings = async (params:GetPbListingsParams) => {
 
 
 
-export type ListingForminput = Omit<PBListings, "id"|"created"|"updated"|"expand"|"collectionId"|"collectionName">
+export type ListingFormInputs = Omit<PBListings, "id"|"created"|"updated"|"expand"|"collectionId"|"collectionName">
 interface CreateListingProps {
-  data: ListingForminput;
+  data: ListingFormInputs;
 }
 export async function createListing({data}:CreateListingProps) {
   try {

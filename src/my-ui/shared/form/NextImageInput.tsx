@@ -44,7 +44,7 @@ return (
     {!preview&&
     <ImagePlus className="w-8 h-8" onClick={() => ref.current?.click()} />}
     <input id="file" className="hidden" ref={ref} type="file" onChange={handleChange} />
-    <label htmlFor="file" className=""></label>  
+ 
  </div>
 );
 }
