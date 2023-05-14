@@ -1,5 +1,5 @@
 "use client"
-import { ListingAmenities, ListingFormInputs } from "@/state/pb/api/listings";
+import { CreateListingProps, ListingAmenities, ListingFormInputs, PBListings, createListing } from "@/state/pb/api/listings";
 import { useFormHook } from "../shared/hooks/useFormHook";
 import { FormInput } from "../shared/form/FormInput";
 import Select from "react-select";
@@ -9,6 +9,9 @@ import { FormTextArea } from "../shared/form/FormTextArea";
 import { AmenitiesGroup } from "./AmenitiesGroup";
 import ReactLeafletMapCard from "../location/ReactLeafletMapCard";
 import { ImageInput } from "./ImageInput";
+import { useMutation } from "@/state/utils/useMutation";
+import { Button } from "../shared/form/Button";
+import { ErrorOutput } from "../shared/wrappers/ErrorOutput";
 
 
 
@@ -17,10 +20,10 @@ import { ImageInput } from "./ImageInput";
 interface ListingFormProps {
     label:string
 }
-
+type FetcherReturn = Awaited<ReturnType<typeof createListing>>;
 export function ListingForm({label}:ListingFormProps){
 
-const{error,handleChange,input,setError,setInput,validateInputs} = useFormHook<ListingFormInputs>({
+const{error,handleChange,input,setInput,setError} = useFormHook<ListingFormInputs>({
 initialValues:{
     amenities:null,
     description:"",
@@ -59,9 +62,18 @@ initialValues:{
         });
     };
 
+    const mutation = useMutation<CreateListingProps,FetcherReturn>({
+        fetcher:createListing,
+        key:"listings"
+
+    })
+
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // console.log("about to save ",input)
+        mutation.trigger({data:input}).catch((err)=>{
+            console.log("error doing saving listing ===",err)
+            setError(err)
+        })
         // mutation.mutate(input);
     };
 
@@ -159,8 +171,8 @@ return (
                 label="Property Images"
                 max_images={5}
             />
-
-
+            <Button isLoading={mutation.isMutating} label="save changes" type="submit"/>
+            {error.message !== "" && <ErrorOutput error={error} />}
         </form>
 
  </div>

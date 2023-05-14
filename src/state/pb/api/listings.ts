@@ -136,15 +136,15 @@ export const getPbListings = async (params:GetPbListingsParams) => {
 
 
 export type ListingFormInputs = Omit<PBListings, "id"|"created"|"updated"|"expand"|"collectionId"|"collectionName">
-interface CreateListingProps {
+export interface CreateListingProps {
   data: ListingFormInputs;
 }
 export async function createListing({data}:CreateListingProps) {
   try {
-    const record = await pb.collection('listings').create(data);
+    const record = await pb.collection('listings').create<PBListings>(data);
     return record
   } catch (error:any) {
-    return new Error(error);
+    throw error
   }
 }
 
