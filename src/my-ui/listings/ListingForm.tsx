@@ -13,6 +13,7 @@ import { useMutation } from "@/state/utils/useMutation";
 import { Button } from "../shared/form/Button";
 import { ErrorOutput } from "../shared/wrappers/ErrorOutput";
 import { checkIfEmpty } from "@/state/utils/checkIfObjectHasemptyField";
+import { useToast } from "../../../components/ui/use-toast";
 
 
 
@@ -24,6 +25,7 @@ interface ListingFormProps {
 type FetcherReturn = Awaited<ReturnType<typeof createListing>>;
 export function ListingForm({label}:ListingFormProps){
 
+const { toast } = useToast()    
 const{error,handleChange,input,setInput,setError} = useFormHook<ListingFormInputs>({
 initialValues:{
     amenities:null,
@@ -95,7 +97,13 @@ initialValues:{
 
         mutation.trigger({data:formdata})
         .then((res)=>{
+            
             setError({name:"",message:""})
+            toast({
+                title: "listing added",
+                description: `listing in ${res?.location } added successfully`,
+            })
+
         })
         .catch((err)=>{
             console.log("error doing saving listing ===",err)
