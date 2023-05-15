@@ -82,7 +82,7 @@ function MapChild({ draggable, position, setMapLocation }: MapChildProps) {
   // const [position, setPosition] = useState(null)
   const map = useMapEvents({
     click(e) { 
-      map.locate()
+      // map.locate()
       // console.log("click event  ==== ",e.latlng)
       if(e.latlng){
         setMapLocation&&setMapLocation(e.latlng?.lat, e.latlng?.lng);
@@ -96,24 +96,31 @@ function MapChild({ draggable, position, setMapLocation }: MapChildProps) {
     // },
     locationfound(e) {
       // setPosition(e.latlng)
-      if(e.latlng){
-        setMapLocation && setMapLocation(e.latlng?.lat, e.latlng?.lng);
-      }
+      // if(e.latlng){
+      //   setMapLocation && setMapLocation(e.latlng?.lat, e.latlng?.lng);
+      // }
 
       map.flyTo(position, map.getZoom());
     },
     dragend(e) {
       // console.log("dragged event  === ",e.target._latlng)
-      if(e.target._latlng){ 
-        setMapLocation && setMapLocation(e.target?._latlng?.lat, e.target?._latlng?.lng);
-      }
+
   
     },
 
   });
   // console.log("position  === ",position)
   return position === null ? null : (
-    <Marker  icon={ICON} position={position} draggable={draggable}>
+    <Marker  
+    eventHandlers={{
+      dragend(e) {
+        // console.log("dragged event  === ",e)
+        if (e.target._latlng) {
+          setMapLocation && setMapLocation(e.target?._latlng?.lat, e.target?._latlng?.lng);
+        }
+      }
+    }}
+    icon={ICON} position={position} draggable={draggable}>
       {/* <Popup>alatitude: {position.lng}, longitude: {position.lat}</Popup> */}
     </Marker>
 

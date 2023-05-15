@@ -72,7 +72,7 @@ export interface PBListings {
   status: "available" | "sold";
   images: (string | File | null)[];
   amenities: ListingAmenities | null;
-  owner?: string;
+  owner: string;
   expand: { owner: ListingsOwner };
 }
 
@@ -137,7 +137,7 @@ export const getPbListings = async (params:GetPbListingsParams) => {
 
 export type ListingFormInputs = Omit<PBListings, "id"|"created"|"updated"|"expand"|"collectionId"|"collectionName">
 export interface CreateListingProps {
-  data: ListingFormInputs;
+  data: ListingFormInputs|FormData;
 }
 export async function createListing({data}:CreateListingProps) {
   try {

@@ -20,11 +20,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         {...props}
         className={
-          isLoading
+          props.disabled
             ? twMerge("cursor-not-allowed brightness-50 text-purple-600", base_style)
             : base_style
         }
-        disabled={isLoading}>
+        // disabled={isLoading}
+        >
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (

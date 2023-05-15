@@ -21,6 +21,7 @@ export const ImageInput = <T,>({
   setInput,
   max_images = 2,
 }: ImageInputProps<T>) => {
+
   const img_arr = new Array<File[] | string | null | undefined>(
     input[prop] as File[] | null | undefined
   );
@@ -65,7 +66,7 @@ export const ImageInput = <T,>({
     }
   }, [pics]);
 
-  // console.log("input ==== ", input.images);
+  console.log("input ==== ", input.images);
   return (
     <div className="w-full  h-full flex flex-col items-center justify-center ">
       <label className="text-md capitalize  w-[90%] flex items-start">

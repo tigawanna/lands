@@ -19,6 +19,9 @@ export function useFormHook<T>({ initialValues}: IUseFormHook<T>) {
             ...input,
             [e.target.id]: e.target.value
         })
+        if (error.message !== "" || error.name !== "") {
+            setError({ name: "", message: "" });
+        }
     }
 
     function validateInputs(ipts: T) {

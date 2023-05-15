@@ -12,6 +12,7 @@ import { ImageInput } from "./ImageInput";
 import { useMutation } from "@/state/utils/useMutation";
 import { Button } from "../shared/form/Button";
 import { ErrorOutput } from "../shared/wrappers/ErrorOutput";
+import { checkIfEmpty } from "@/state/utils/checkIfObjectHasemptyField";
 
 
 
@@ -26,12 +27,12 @@ export function ListingForm({label}:ListingFormProps){
 const{error,handleChange,input,setInput,setError} = useFormHook<ListingFormInputs>({
 initialValues:{
     amenities:null,
-    description:"",
+    description:"land for sale ",
     price:20000,
     images:[],
     latitude: 51.505,
     longitude:-0.09,
-    location:"",
+    location:"kericho",
     status:"available",
     owner:"",
 }
@@ -45,8 +46,9 @@ initialValues:{
         setInput((prev) => {
             return { ...prev, owner: value };
         });
-        // console.log("input ",input)
+    
     };
+
     const setAmmenity = (key: keyof ListingAmenities, value: any) => {
         // console.log("updationg k,v ",key,value)
         if (key !== undefined && key !== null) {
@@ -70,7 +72,32 @@ initialValues:{
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        mutation.trigger({data:input}).catch((err)=>{
+        // console.log("input before save", input)
+        const formdata = new FormData(e.currentTarget);
+        const excludeKeys = ["amenities", "images"];
+        if (input.images) {
+            input.images?.forEach((image) => {
+                formdata.append("images", image as Blob);
+            });
+        }
+        if (input.amenities) {
+            formdata.append("amenities", JSON.stringify(input.amenities));
+        }
+        for (const key in input) {
+            if (
+                !excludeKeys.includes(key) &&
+                input[key as keyof typeof input] !== ""
+            ) {
+                // @ts-expect-error
+                formdata.append(key, input[key]);
+            }
+        }
+
+        mutation.trigger({data:formdata})
+        .then((res)=>{
+            setError({name:"",message:""})
+        })
+        .catch((err)=>{
             console.log("error doing saving listing ===",err)
             setError(err)
         })
@@ -79,10 +106,10 @@ initialValues:{
 
 
 return (
- <div className='w-full h-full flex items-center justify-center'>
+ <div className='w-full h-full flex flex-col  items-center justify-center gap-4'>
         <form
             onSubmit={handleSubmit}
-            className="w-[90%] md:w-[60%] h-full border-2 shadow-xl rounded-xl p-3
+            className="w-[90%] md:w-[60%] h-full border-2 shadow-xl rounded-xl p-3 gap-2 m-5
             flex flex-col items-center justify-center bg-white dark:bg-black dark:text-white">
             <div className="w-[95%]  text-xl font-bold text-center p-2">
                 {label}
@@ -125,7 +152,6 @@ return (
             <FormTextArea<ListingFormInputs>
                 error={error}
                 onChange={handleChange}
-            
                 input={input}
                 prop="description"
                 label="Property Description"
@@ -171,7 +197,22 @@ return (
                 label="Property Images"
                 max_images={5}
             />
-            <Button isLoading={mutation.isMutating} label="save changes" type="submit"/>
+
+            <div className="w-[90%] flex  flex-col items-center justify-center">
+                {checkIfEmpty(input).empty ? (
+                    <div
+                        className="m-1 w-full text-center  line-clamp-4 p-2 bg-red-100 border-b-2 
+                        border-red-800 text-red-900  rounded-xl">
+                        {checkIfEmpty(input).value}
+                    </div>
+                ) : null}
+            </div>
+
+            <Button 
+            isLoading={mutation.isMutating} 
+            disabled={checkIfEmpty(input,["owner"]).empty || mutation.isMutating}
+            label="save changes" type="submit"/>
+
             {error.message !== "" && <ErrorOutput error={error} />}
         </form>
 
