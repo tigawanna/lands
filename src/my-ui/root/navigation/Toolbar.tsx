@@ -22,7 +22,7 @@ const Toolbar = ({}: ToolbarProps) => {
   }, [location]);
 
   return (
-    <div className="w-full h-full flex items-center justify-between p-1 font-serif">
+    <div className="w-full h-14 flex items-center justify-between p-1 font-serif sticky top-0 z-30 bg-secondary">
       <div 
       onClick={() => setIsOpen((prev) => !prev)}
       className="md:hidden">
@@ -37,7 +37,7 @@ const Toolbar = ({}: ToolbarProps) => {
         Real Estates
       </Link>
 
-      <BreadCrumbs />
+
 
       {/* <ClientSuspense fallback="">
         <ReactModalWrapper

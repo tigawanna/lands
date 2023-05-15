@@ -113,9 +113,6 @@ export interface GetPbListingsParams{
     filter_id: string;
     perPage: number;
     page: number;
-    sort: string;
-    expand: string;
-
 }
 
 export const getPbListings = async (params:GetPbListingsParams) => {

@@ -10,6 +10,7 @@ export const Footer = ({}: FooterProps) => {
     <FacebookIcon/>
     <TwitterIcon/>
     <InstagramIcon/>
+    
     <Mail/> 
     </footer>
   );

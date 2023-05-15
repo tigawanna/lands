@@ -1,4 +1,4 @@
-
+"use client"
 
 import { useRouter, usePathname, } from "next/navigation";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const BreadCrumbs = ({}: breadcrumbsProps) => {
   }
 // console.log("locations  ==== ",locations)
   return (
-    <nav className="w-fit h-full flex items-center justify-center ">
+    <nav className="w-fit h-full flex items-center justify-center border rounded px-2 ">
       {
         locations.map((item,idx)=>{
           const crumb_link  =getNewPathname(locations, idx)

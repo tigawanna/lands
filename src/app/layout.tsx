@@ -1,12 +1,11 @@
 import { AppWrapper } from '@/my-ui/root/AppWrapper'
-import { Toaster } from '../../components/ui/toaster'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Lands',
+  title: 'Welcome to real estates',
   description: 'Find your dream property',
 }
 
