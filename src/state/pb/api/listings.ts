@@ -149,3 +149,17 @@ export async function createListing({data}:CreateListingProps) {
 }
 
 
+export interface UpdateListingProps {
+  id:string
+  data: ListingFormInputs | FormData;
+}
+export async function updateListing({ id,data }: UpdateListingProps) {
+  try {
+    const record = await pb.collection('listings').update<PBListings>(id,data);
+    return record
+  } catch (error: any) {
+    throw error
+  }
+}
+
+

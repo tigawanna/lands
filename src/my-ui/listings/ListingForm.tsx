@@ -1,5 +1,5 @@
 "use client"
-import { CreateListingProps, ListingAmenities, ListingFormInputs, PBListings, createListing } from "@/state/pb/api/listings";
+import { CreateListingProps, ListingAmenities, ListingFormInputs, PBListings, UpdateListingProps, createListing, updateListing } from "@/state/pb/api/listings";
 import { useFormHook } from "../shared/hooks/useFormHook";
 import { FormInput } from "../shared/form/FormInput";
 import Select from "react-select";
@@ -7,7 +7,7 @@ import { SearchSelect } from "../shared/form/SearchSelect";
 import { getOwner } from "@/state/pb/api/owner";
 import { FormTextArea } from "../shared/form/FormTextArea";
 import { AmenitiesGroup } from "./AmenitiesGroup";
-import ReactLeafletMapCard from "../location/ReactLeafletMapCard";
+// import ReactLeafletMapCard from "../location/ReactLeafletMapCard";
 import { ImageInput } from "./ImageInput";
 import { useMutation } from "@/state/utils/useMutation";
 import { Button } from "../shared/form/Button";
@@ -15,28 +15,34 @@ import { ErrorOutput } from "../shared/wrappers/ErrorOutput";
 import { checkIfEmpty } from "@/state/utils/checkIfObjectHasemptyField";
 import { useToast } from "../../../components/ui/use-toast";
 
-
+import dynamic from 'next/dynamic';
+import { useGeoLocation } from "../shared/hooks/useGeoLocation";
+const ReactLeafletMapCard = dynamic(() => import('../location/ReactLeafletMapCard'),{ssr:false});
 
 
 
 interface ListingFormProps {
     label:string
+    listing?:PBListings
 }
 type FetcherReturn = Awaited<ReturnType<typeof createListing>>;
-export function ListingForm({label}:ListingFormProps){
+type UpdateFetcherReturn = Awaited<ReturnType<typeof updateListing>>;
+export function ListingForm({label,listing}:ListingFormProps){
 
+const {position} =useGeoLocation()
 const { toast } = useToast()    
+
 const{error,handleChange,input,setInput,setError} = useFormHook<ListingFormInputs>({
 initialValues:{
-    amenities:null,
-    description:"land for sale ",
-    price:20000,
-    images:[],
-    latitude: 51.505,
-    longitude:-0.09,
-    location:"kericho",
-    status:"available",
-    owner:"",
+    amenities:listing?.amenities??null,
+    description:listing?.description??"",
+    price:listing?.price??20000,
+    images:listing?.images??[],
+    latitude:listing?.latitude??position.lat,
+    longitude:listing?.longitude??position.lng,
+    location:listing?.location??"",
+    status:listing?.status??"available",
+    owner:listing?.owner??"",
 }
  }) 
 
@@ -71,6 +77,12 @@ initialValues:{
         key:"listings"
 
     })
+    
+    const update_mutation = useMutation<UpdateListingProps, UpdateFetcherReturn>({
+        fetcher: updateListing,
+        key: "listings"
+
+    })
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -95,21 +107,37 @@ initialValues:{
             }
         }
 
-        mutation.trigger({data:formdata})
-        .then((res)=>{
-            
-            setError({name:"",message:""})
-            toast({
-                title: "listing added",
-                description: `listing in ${res?.location } added successfully`,
-            })
 
-        })
-        .catch((err)=>{
-            console.log("error doing saving listing ===",err)
-            setError(err)
-        })
-        // mutation.mutate(input);
+
+        if(listing&&listing.id){
+            update_mutation.trigger({ id: listing?.id as string, data: formdata })
+                .then((res) => {
+                    setError({ name: "", message: "" })
+                    toast({
+                        title: "listing updated",
+                        description: `listing in ${res?.location} updated successfully`,
+                    })
+                })
+                .catch((err) => {
+                    console.log("error updating listing ===", err)
+                    setError(err)
+                })
+        }
+        else{
+            mutation.trigger({ data: formdata })
+                .then((res) => {
+                    setError({ name: "", message: "" })
+                    toast({
+                        title: "listing added",
+                        description: `listing in ${res?.location} added successfully`,
+                    })
+                })
+                .catch((err) => {
+                    console.log("error creating listing ===", err)
+                    setError(err)
+                })
+        }
+    
     };
 
 

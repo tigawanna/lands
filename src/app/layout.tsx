@@ -9,15 +9,11 @@ export const metadata = {
   description: 'Find your dream property',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children,}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <Toaster/>
+      {/* <Toaster/> */}
     </html>
   )
 }

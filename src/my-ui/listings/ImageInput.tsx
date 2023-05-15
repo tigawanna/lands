@@ -66,7 +66,7 @@ export const ImageInput = <T,>({
     }
   }, [pics]);
 
-  console.log("input ==== ", input.images);
+  // console.log("input ==== ", input.images);
   return (
     <div className="w-full  h-full flex flex-col items-center justify-center ">
       <label className="text-md capitalize  w-[90%] flex items-start">
