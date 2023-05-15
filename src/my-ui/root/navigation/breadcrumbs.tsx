@@ -1,10 +1,14 @@
-import { StyledLink, useLocation } from "rakkasjs";
+
+
+import { useRouter, usePathname, } from "next/navigation";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 interface breadcrumbsProps {}
 
 const BreadCrumbs = ({}: breadcrumbsProps) => {
-  const location = useLocation();
-  const locations = location.current.pathname.split("/");
+  const location = usePathname();
+  const locations = location.split("/")
 
   const getNewPathname = (parts: string[], index: number) => {
     // const new_arr = parts.slice(0, index)
@@ -19,37 +23,29 @@ const BreadCrumbs = ({}: breadcrumbsProps) => {
     return new_path;
   };
 
-  // console.log("oations ==== ", loc)
+  function should_add_chevron(parts: string[], index: number) {
+    // const new_arr = parts.slice(0, index)
+    if(index === 0 || parts.length < 2 || index === parts.length - 1){
+      return false
+    }else{
+      return true
+    }
+  }
+// console.log("locations  ==== ",locations)
   return (
-    <nav className="w-fit h-full flex items-center justify-center">
-      {locations.map((item, index) => {
-        // console.log("index", index, "pahth prams > ", getNewPathname(locations, index), "item", item)
+    <nav className="w-fit h-full flex items-center justify-center ">
+      {
+        locations.map((item,idx)=>{
+          const crumb_link  =getNewPathname(locations, idx)
+          return <Link 
+          className="flex"
+          style={{color:crumb_link===location?"purple":""}}
+          key={idx} href={crumb_link}>{item}
+          {should_add_chevron(locations, idx) && <ChevronRight />}
+          </Link>
+        })
+      }
 
-        if (locations.length - 1 === index || index === 0) {
-          return (
-            <StyledLink
-              key={index}
-              href={location.current.origin + getNewPathname(locations, index)}
-              activeStyle={{ color: "purple" }}
-              className="w-fit"
-            >
-              {item}
-            </StyledLink>
-          );
-        }
-
-        return (
-          <StyledLink
-            key={index}
-            href={location.current.origin + getNewPathname(locations, index)}
-            activeStyle={{ color: "purple" }}
-            className="w-fit"
-          >
-            {item}
-            {">"}
-          </StyledLink>
-        );
-      })}
     </nav>
   );
 };

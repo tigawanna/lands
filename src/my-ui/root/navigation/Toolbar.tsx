@@ -3,30 +3,31 @@
 import { lazy, useEffect, useState } from "react";
 import { RouteLinks } from "./RouteLinks";
 import { Menu, X } from "lucide-react";
-import { useRouter,usePathname, } from "next/navigation";
+
 import Link from "next/link";
+import BreadCrumbs from "./breadcrumbs";
 
 
 
 interface ToolbarProps {}
 
 const Toolbar = ({}: ToolbarProps) => {
-  const location = usePathname()
-  const router = useRouter()
+
+
 
   const [isOpen, setIsOpen] = useState(false);
   // close navigation modal on navigate
-  // useEffect(() => {
-  //   setIsOpen(false);
-  // }, [location.]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   return (
     <div className="w-full h-full flex items-center justify-between p-1 font-serif">
       <div 
       onClick={() => setIsOpen((prev) => !prev)}
       className="md:hidden">
-      {isOpen?<Menu/>:<X/>}
-    </div>
+        {isOpen ? <X /> : <Menu />}
+      </div>
 
       <Link
         className="w-fit  min-w-[150px] text-xl md:text-2xl mx-2 
@@ -35,6 +36,8 @@ const Toolbar = ({}: ToolbarProps) => {
       >
         Real Estates
       </Link>
+
+      <BreadCrumbs />
 
       {/* <ClientSuspense fallback="">
         <ReactModalWrapper
@@ -60,8 +63,9 @@ const Toolbar = ({}: ToolbarProps) => {
           }}
         />
       </ClientSuspense> */}
-      <nav className="px-3 hidden md:flex">
+      <nav className="px-3 ">
         <RouteLinks />
+
       </nav>
     </div>
   );

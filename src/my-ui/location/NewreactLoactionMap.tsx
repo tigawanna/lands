@@ -79,7 +79,7 @@ function DisplayPosition({ map, center, zoom }: DisplayPositionProps) {
     }, [map, onMove])
 
     return (
-        <p>
+        <p className="test-sm">
             latitude: {position?.lat.toFixed(4)}, longitude: {position?.lng.toFixed(4)}{' '}
             <button onClick={onClick}>reset</button>
         </p>
