@@ -12,7 +12,7 @@ export const HeroImage = ({ }: HeroImageProps) => {
                 width={800}
                 height={400}
                 priority={true}
-                className={"relative object-cover md:h-[80vh] w-screen"}
+                className={"relative object-cover h-[80vh] w-screen"}
             />
 
 
@@ -21,7 +21,7 @@ export const HeroImage = ({ }: HeroImageProps) => {
                flex flex-col md:flex-row items-center justify-center md:justify-evenly gap-5">
            
                 <div className="w-[90%] md:w-[40%] flex flex-col items-start justify-start gap-5">
-                <div className="w-full text-4xl sm:text-5xl  md:text-6xl font-bold font-serif capitalize first-letter:text-purple-400">
+                <div className="w-full text-5xl  md:text-6xl font-bold font-serif capitalize first-letter:text-purple-400">
                 {" "}<div>find</div> your Dream property with us</div>
                 
                 <div className=" w-full ">

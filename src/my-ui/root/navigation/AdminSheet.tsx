@@ -30,7 +30,7 @@ export function AdminSheet() {
         </Button>
       </SheetTrigger>
       
-      <SheetContent position="right" size="sm" className="w-[30%] flex flex-col items-center ">
+      <SheetContent position="right" size="sm" className="w-[70%] md:w-[30%] flex flex-col items-center ">
         {/* <SheetHeader>
           <SheetTitle>profile</SheetTitle>
           <SheetDescription>

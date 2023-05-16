@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
+import { MobileViewSheet } from "./MobileViewSheet";
 
 
 
@@ -16,59 +17,28 @@ const Toolbar = ({}: ToolbarProps) => {
 
 
 
-  const [isOpen, setIsOpen] = useState(false);
-  // close navigation modal on navigate
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+
 
   return (
-    <div className="w-full h-14 flex items-center justify-between p-1 font-serif sticky top-0 z-30 bg-secondary">
-      <div 
-      onClick={() => setIsOpen((prev) => !prev)}
-      className="md:hidden">
-        {isOpen ? <X /> : <Menu />}
+    <div className="w-full h-14 flex items-center justify-start p-1 font-serif sticky top-0 z-30 bg-secondary">
+      <div className="w-8 ">
+      <MobileViewSheet/>
       </div>
 
+
       <Link
-        className="w-fit  min-w-[100px] text-xl md:text-2xl mx-2 
-        font-bold hover:text-purple-400 hover:no-underline"
+        className="w-fit  min-w-[150px] text-lg md:text-xl mx-2 
+        font-bold hover:text-accent-foreground hover:no-underline"
         href="/"
       >
         Real Estates
       </Link>
 
-
-
-      {/* <ClientSuspense fallback="">
-        <ReactModalWrapper
-          child={
-            <nav className="w-full  flex item-center gap-1 font-serif">
-              <RouteLinks />
-            </nav>
-          }
-          closeModal={() => setIsOpen(false)}
-          delay={0}
-          open={isOpen}
-          responsive={false}
-          closebutton={false}
-          styles={{
-            overlay_top: "8%",
-            overlay_right: "0%",
-            overlay_left: "0%",
-            overlay_bottom: "0%",
-            content_bottom: "10%",
-            content_right: "10%",
-            content_left: "0%",
-            content_top: "2%",
-          }}
-        />
-      </ClientSuspense> */}
-      <nav className="px-3 flex items-center justify-center">
+      <nav className="w-full px-3 hidden md:flex items-center justify-end ">
         <RouteLinks />
         <AdminSheet/>
       </nav>
-      {/* <ReactProgress isAnimating/> */}
+
     </div>
   );
 };
