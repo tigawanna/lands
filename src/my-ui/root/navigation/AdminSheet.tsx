@@ -12,7 +12,7 @@ import Image from "next/image";
 import { Mail, UserCircle } from "lucide-react";
 
 export function AdminSheet() {
-    const { user, updateUser } = useUserStore()
+    const { user} = useUserStore()
     if (!user) {
         return null
     }

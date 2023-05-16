@@ -31,7 +31,7 @@ const Toolbar = ({}: ToolbarProps) => {
       </div>
 
       <Link
-        className="w-fit  min-w-[150px] text-xl md:text-2xl mx-2 
+        className="w-fit  min-w-[100px] text-xl md:text-2xl mx-2 
         font-bold hover:text-purple-400 hover:no-underline"
         href="/"
       >
