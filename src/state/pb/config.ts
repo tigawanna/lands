@@ -1,9 +1,11 @@
 import PocketBase, {FileQueryParams,Record} from "pocketbase";
 import { pb_url, pb_user_collection } from "../consts";
-import {GithubOauthResponse,PBUserRecord,TUserSignUpFormFields,} from "../user";
-
+import { GithubOauthResponse,PBUserRecord,TUserSignUpFormFields } from "../user";
+import { useUserStore } from "../zustand/user";
 
 export const pb = new PocketBase(pb_url);
+
+
 
 export async function getUser() {
   try {
@@ -22,6 +24,9 @@ interface ILoginUser {
 export async function loginUser({user,password}: ILoginUser) {
   try {
     const authData = await pb.collection(pb_user_collection).authWithPassword<PBUserRecord>(user,password);
+    useUserStore.setState({
+      user: authData.record
+    })
     return authData;
   } catch (error) {
     throw error;
@@ -35,7 +40,7 @@ interface IOuthLogin {
 export async function triggerOuathLogin({provider}: IOuthLogin) {
   try {
     const authData = await pb.collection(pb_user_collection).authWithOAuth2<GithubOauthResponse>({provider});
-    console.log("authdata from github  == ",authData);
+    // console.log("authdata from github  == ",authData);
     return authData;
   } catch (error) {
     throw error;
@@ -53,7 +58,10 @@ export async function updateUser(authData: GithubOauthResponse) {
       emailVisibility:true
     };
     const new_dev = await pb.collection(pb_user_collection).update(dev.id, data);
-
+    useUserStore.setState({
+      // @ts-expect-error
+      user: new_dev
+    })
     // console.log("new dev === ", new_dev);
     return new_dev;
   } catch (error) {
@@ -84,6 +92,9 @@ export async function createUser({
 }: ISignupuser) {
   try {
     const authData = await pb.collection(pb_user_collection).create(user);
+    useUserStore.setState({
+      user: authData.record
+    })
     return authData;
   } catch (error) {
     throw error;
@@ -93,6 +104,9 @@ export async function createUser({
 export async function logoutUser() {
   try {
     await pb.authStore.clear();
+    useUserStore.setState({
+      user: undefined
+    })
   } catch (error) {
     throw error;
   }

@@ -1,12 +1,12 @@
 // import { ClientSuspense, Link, useLocation } from "rakkasjs";
 
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { RouteLinks } from "./RouteLinks";
 import { Menu, X } from "lucide-react";
 
 import Link from "next/link";
-import BreadCrumbs from "./breadcrumbs";
-import { ReactProgress } from "@/my-ui/shared/loaders/ReactProgress";
+import { AdminSheet } from "./AdminSheet";
+
 
 
 
@@ -64,9 +64,9 @@ const Toolbar = ({}: ToolbarProps) => {
           }}
         />
       </ClientSuspense> */}
-      <nav className="px-3 ">
+      <nav className="px-3 flex items-center justify-center">
         <RouteLinks />
-
+        <AdminSheet/>
       </nav>
       {/* <ReactProgress isAnimating/> */}
     </div>

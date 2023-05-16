@@ -2,13 +2,11 @@
 
 import * as React from "react"
 
-import Link from "next/link"
+
 import { loginUser,  oauthLogin } from "@/state/pb/config"
 import { useMutation } from "@/state/pb/hooks/useMutation"
 import { useRouter } from "next/navigation"
-import { useUserStore } from "@/state/zustand/user"
 import { ErrorOutput } from "../wrappers/ErrorOutput"
-import { Icons } from "../wrappers/icons"
 import { Button } from "../form/Button"
 import { useFormHook } from "../hooks/useFormHook"
 
@@ -29,7 +27,7 @@ type OauthFetcherReturn = Awaited<ReturnType<typeof oauthLogin>>
 export function UserSigninForm({ className, ...props }: UserAuthFormProps) {
 
 const router = useRouter()
-const{updateUser}= useUserStore()
+
 
 
 
@@ -52,7 +50,8 @@ const { error, handleChange, input ,setError } = useFormHook<ILoginUser>({
         event.preventDefault()
         trigger({user:input.user, password: input.password})
         .then((res)=>{
-          updateUser(res?.record)
+          console.log("successfully logged in ==== ",res)
+          // updateUser(res?.record)
           router.refresh()
         })
         .catch(err=>{
