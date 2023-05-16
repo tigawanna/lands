@@ -68,7 +68,7 @@ const Toolbar = ({}: ToolbarProps) => {
         <RouteLinks />
 
       </nav>
-      <ReactProgress isAnimating/>
+      {/* <ReactProgress isAnimating/> */}
     </div>
   );
 };
