@@ -44,14 +44,14 @@ const ReactLeafletMapCard = ({coords,display_only,setMapLocation}: ReactLeafletM
         />
 
         {/* <Popup>Popup in FeatureGroup</Popup> */}
-        <button
+        {/* <button
           type="button"
           className="leaflet-top leaflet-right text-white
                 bg-purple-900 p-2 m-2 z-50 rounded-lg hover:bg-slate-700"
           onClick={() => setMapLocation(initialLocation.current.lat, initialLocation.current.lng)}
         >
           Recenter Map
-        </button>
+        </button> */}
 
         <MapChild
           draggable={!display_only}

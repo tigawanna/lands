@@ -130,6 +130,17 @@ export const getPbListings = async (params:GetPbListingsParams) => {
 };
 
 
+export async function getOneListing(id: string) {
+try { 
+    const record = await pb.collection('listings').getOne<PBListings>(id, {
+      expand: 'owner',
+    });
+    return record
+  } catch (err: any) {
+    console.log("pb listing fetch error  ", err);
+    return new Error(err);
+  }
+}
 
 
 export type ListingFormInputs = Omit<PBListings, "id"|"created"|"updated"|"expand"|"collectionId"|"collectionName">
