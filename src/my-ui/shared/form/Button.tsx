@@ -2,6 +2,7 @@
 import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { Icons } from "../wrappers/icons";
+import { Loader } from "lucide-react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   isLoading?: boolean;
@@ -27,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // disabled={isLoading}
         >
         {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          <Loader className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <div>{node ?? label}</div>
         )}

@@ -1,5 +1,6 @@
 import { InstagramIcon, Mail } from "lucide-react";
 import { FacebookIcon,TwitterIcon } from "lucide-react";
+import Link from "next/link";
 
 
 interface FooterProps {}
@@ -10,8 +11,7 @@ export const Footer = ({}: FooterProps) => {
     <FacebookIcon/>
     <TwitterIcon/>
     <InstagramIcon/>
-    
-    <Mail/> 
+    <Link href="/auth"><Mail/> </Link>
     </footer>
   );
 };
