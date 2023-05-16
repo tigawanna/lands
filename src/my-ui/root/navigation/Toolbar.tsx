@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 
 import Link from "next/link";
 import BreadCrumbs from "./breadcrumbs";
+import { ReactProgress } from "@/my-ui/shared/loaders/ReactProgress";
 
 
 
@@ -67,6 +68,7 @@ const Toolbar = ({}: ToolbarProps) => {
         <RouteLinks />
 
       </nav>
+      <ReactProgress isAnimating/>
     </div>
   );
 };

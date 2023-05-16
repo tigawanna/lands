@@ -1,8 +1,6 @@
 import { PBListings } from "@/state/pb/api/listings";
 import { Phone, Mail } from "lucide-react";
-
 import { Icons } from "../shared/wrappers/icons";
-import { makeImageUrl } from "@/state/pb/config";
 import { ReactLocationWrapper } from "../location/ReactLocationWrapper";
 import { NextCarrousel } from "../shared/wrappers/NextCarrousel";
 import { Collapsable } from "../shared/wrappers/Collapsable";
