@@ -18,7 +18,7 @@ interface MobileViewSheetProps {
 
 export function MobileViewSheet({user}:MobileViewSheetProps) {
 
-console.log("user",user)
+
   return (
     <Sheet>
       <SheetTrigger asChild >

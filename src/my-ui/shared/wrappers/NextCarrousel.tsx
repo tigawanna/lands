@@ -16,7 +16,7 @@ export function NextCarrousel({images,record_id}:NextCarrouselProps){
 return (
  <div className='w-full h-full flex items-center justify-center'>
         <Carousel
-        className='md:w-[70%]  md:h-[50%] '  
+            className='md:w-[70%] min-h-[200px] md:h-[50%] '  
         showThumbs={false} autoPlay infiniteLoop stopOnHover swipeable interval={5000}>
         {images.map((image,idx)=>{
             const image_url  = makeImageUrl("listings", record_id, image)??image

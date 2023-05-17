@@ -18,7 +18,8 @@ return (
     <main className="w-full h-full min-h-screen flex flex-col items-center justify-center">
         
         <div className="w-full h-full flex flex-col items-center justify-center gap-2">
-        <div className="w-[90%] h-full  flex flex-col lg:flex-row  items-center justify-center rounded-2xl m-2 gap-2 md:gap-1">
+        <div className="w-[90%] h-full  flex flex-col lg:flex-row  
+                items-center justify-center rounded-2xl m-2 gap-5 md:gap-1">
 
                 <NextCarrousel
                     images={listing.images as string[]}
@@ -54,8 +55,8 @@ return (
                 </div>
             </div>
 
-            <div className="w-full flex flex-row  items-center justify-center">
-                <div className="w-[90%] md:w-[70%] p-5 ">
+            <div className="w-full min-h-[300px] flex flex-row  items-center justify-center">
+                <div className="w-[95%] md:w-[70%] p-5 ">
                 <ReactLocationWrapper coords={{ lat: listing.latitude, lng: listing.longitude}}/>
                 </div>
             </div>
