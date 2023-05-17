@@ -11,7 +11,7 @@ interface pageProps {
 
 export default async function page({}:pageProps){
 const listings = await getPbListings({ filter_id: "", page: 1, perPage: 20 })
-const {pb,cookies} = await server_component_pb()
+const { cookies } = await server_component_pb()
 const user =cookies().get("pb_auth")?.value
 
 

@@ -26,7 +26,6 @@ export function MobileViewSheet({user}:MobileViewSheetProps) {
       </SheetTrigger>
       
       <SheetContent  position="left" size="lg" className="w-[80%] flex flex-col items-center ">
-
         <Link
           className="w-fit  min-w-[100px] text-xl md:text-2xl mx-2 
         font-bold hover:text-purple-400 hover:no-underline"
@@ -37,7 +36,7 @@ export function MobileViewSheet({user}:MobileViewSheetProps) {
         <RouteLinks mobile={true}/>
         <div className="flex items-center justify-center p-2 rounded-2xl border 
         font-bold text-accent-foreground">
-         {user&&<AdminSheet />}
+          {(user && user.id) &&<AdminSheet />}
          </div>
 
 

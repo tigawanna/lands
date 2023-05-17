@@ -3,22 +3,30 @@ import { Close } from "@radix-ui/react-dialog"
 import { Home, LucideIcon, UserCog } from "lucide-react";
 import { ListIcon } from "lucide-react";
 import { Info } from "lucide-react";
+import { PBUserRecord } from "@/state/user";
 interface RoutesProps {
   mobile?:boolean
+  user?:PBUserRecord
 }
 
-export const RouteLinks = ({mobile = false}: RoutesProps) => {
+export const RouteLinks = ({mobile = false,user}: RoutesProps) => {
   const links =[
     {name:"home",url:"/",Icon:Home},
     {name:"listings",url:"/listings",Icon:ListIcon},
-    {name:"about",url:"/about",Icon:Info},
-    {name:"admin",url:"/admin/new",Icon:UserCog}
+    {name:"about",url:"/about",Icon:Info}
   ]
   return (
     <nav className="w-full md:w-fit  h-full  flex flex-col md:flex-row  items-center justify-cen gap-2 px-2 ">
-      {links.map((link)=>(
+      {links.map((link)=>{ 
+        if ((!user|| (user && user.id)) && link.name==="admin"){
+          return null
+        }
+        return(
         <RouteLink key={link.name} mobile={mobile} url={link.url} Icon={link.Icon} name={link.name}/>
-      ))}
+      )}
+      
+      )}
+      {(user && user.id)&&<RouteLink mobile={mobile} url="/admin" Icon={UserCog} name="admin"/>}
     </nav>
   );
 };

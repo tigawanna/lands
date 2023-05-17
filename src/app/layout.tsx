@@ -13,7 +13,8 @@ export const metadata = {
 
 export default async function RootLayout({children,}: {children: React.ReactNode}) {
   const {cookies} = await server_component_pb()
-    const user = JSON.parse(cookies().get("pb_auth")?.value??"") as PBUserRecord
+  const user_string = cookies().get("pb_auth")?.value ?? "{}"
+    const user = JSON.parse(user_string).model as PBUserRecord
 
   return (
     <html lang="en">
