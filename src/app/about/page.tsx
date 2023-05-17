@@ -1,13 +1,13 @@
 
-import { agnosticUserAuth } from '@/state/pb/userAuth';
-import Image from 'next/image'
+
 interface pageProps {
 
 }
 
 export default async function page({}:pageProps){
-const user = await agnosticUserAuth()
-console.log("user in next13  ==== ", user)
+
+
+
 return (
  <div className='w-full min-h-screen h-full flex items-center justify-center'>
         <div className="bg-gray-100">

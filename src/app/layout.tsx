@@ -1,6 +1,8 @@
 import { AppWrapper } from '@/my-ui/root/AppWrapper'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { server_component_pb } from '@/state/pb/server_component_pb'
+import { PBUserRecord } from '@/state/user'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -9,11 +11,14 @@ export const metadata = {
   description: 'Find your dream property',
 }
 
-export default function RootLayout({children,}: {children: React.ReactNode}) {
+export default async function RootLayout({children,}: {children: React.ReactNode}) {
+  const {cookies} = await server_component_pb()
+    const user = JSON.parse(cookies().get("pb_auth")?.value??"") as PBUserRecord
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppWrapper>
+        <AppWrapper user={user}>
           {children}
         </AppWrapper>
       </body>

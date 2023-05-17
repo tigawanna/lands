@@ -3,7 +3,7 @@ import { ListingCard } from "@/my-ui/listings/ListingCard";
 import { ErrorOutput } from "@/my-ui/shared/wrappers/ErrorOutput";
 import { getPbListings } from "@/state/pb/api/listings";
 import { server_component_pb } from "@/state/pb/server_component_pb";
-import { agnosticUserAuth } from "@/state/pb/userAuth";
+
 
 interface pageProps {
 
@@ -12,8 +12,8 @@ interface pageProps {
 export default async function page({}:pageProps){
 const listings = await getPbListings({ filter_id: "", page: 1, perPage: 20 })
 const {pb,cookies} = await server_component_pb()
-const user = pb.authStore.model
-console.log("server side user  ==== ",user,cookies().get("pb_auth"))
+const user =cookies().get("pb_auth")?.value
+
 
     if (listings instanceof Error) {
         return <ErrorOutput error={listings} />

@@ -9,12 +9,16 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
 import { RouteLinks } from "./RouteLinks";
+import { PBUserRecord } from "@/state/user";
 
 
+interface MobileViewSheetProps {
+  user?:PBUserRecord
+}
 
-export function MobileViewSheet() {
+export function MobileViewSheet({user}:MobileViewSheetProps) {
 
-
+console.log("user",user)
   return (
     <Sheet>
       <SheetTrigger asChild >
@@ -33,7 +37,7 @@ export function MobileViewSheet() {
         <RouteLinks mobile={true}/>
         <div className="flex items-center justify-center p-2 rounded-2xl border 
         font-bold text-accent-foreground">
-         <AdminSheet />
+         {user&&<AdminSheet />}
          </div>
 
 

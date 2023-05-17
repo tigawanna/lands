@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Close } from "@radix-ui/react-dialog"
-import { Home, LucideIcon } from "lucide-react";
+import { Home, LucideIcon, UserCog } from "lucide-react";
 import { ListIcon } from "lucide-react";
 import { Info } from "lucide-react";
 interface RoutesProps {
@@ -12,6 +12,7 @@ export const RouteLinks = ({mobile = false}: RoutesProps) => {
     {name:"home",url:"/",Icon:Home},
     {name:"listings",url:"/listings",Icon:ListIcon},
     {name:"about",url:"/about",Icon:Info},
+    {name:"admin",url:"/admin/new",Icon:UserCog}
   ]
   return (
     <nav className="w-full md:w-fit  h-full  flex flex-col md:flex-row  items-center justify-cen gap-2 px-2 ">

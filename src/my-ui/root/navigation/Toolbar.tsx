@@ -4,24 +4,22 @@ import { RouteLinks } from "./RouteLinks";
 import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
 import { MobileViewSheet } from "./MobileViewSheet";
+import { PBUserRecord } from "@/state/user";
 
 
 
 
-interface ToolbarProps {}
+interface ToolbarProps {
+  user?:PBUserRecord
+}
 
-const Toolbar = ({}: ToolbarProps) => {
+function Toolbar({user}: ToolbarProps){
 
-
-
-
-
-  return (
+return (
     <div className="w-full h-14 flex items-center justify-start p-1 font-serif sticky top-0 z-30 bg-secondary">
       <div className="w-8 ">
-      <MobileViewSheet/>
+      <MobileViewSheet user={user}/>
       </div>
-
 
       <Link
         className="w-fit  min-w-[150px] text-lg md:text-xl mx-2 
@@ -33,7 +31,8 @@ const Toolbar = ({}: ToolbarProps) => {
 
       <nav className="w-full px-3 hidden md:flex items-center justify-end ">
         <RouteLinks />
-        <AdminSheet/>
+        {user&&<AdminSheet/>}
+ 
       </nav>
 
     </div>

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { logNormal, logSuccess } from './state/utils/pretty';
 
 
 export async function middleware(request: NextRequest) {
@@ -12,8 +13,9 @@ export async function middleware(request: NextRequest) {
  if (cookie && request.nextUrl.pathname.startsWith('/auth')) {
         return NextResponse.rewrite(new URL(request.nextUrl.origin));
  }
-console.log(" next origin   ===  ",request.nextUrl.origin,request.url)
-console.log("cookies  ===  ",cookie)
+logNormal(" next origin   ===  ",request.nextUrl.origin,request.url)
+
+logSuccess("cookies  ===  ",cookie)
  return response;
 }
 
