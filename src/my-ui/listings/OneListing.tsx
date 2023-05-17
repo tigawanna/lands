@@ -4,7 +4,7 @@ import { Icons } from "../shared/wrappers/icons";
 import { ReactLocationWrapper } from "../location/ReactLocationWrapper";
 import { NextCarrousel } from "../shared/wrappers/NextCarrousel";
 import { Collapsable } from "../shared/wrappers/Collapsable";
-import { AddListingButton } from "./AddListingButton";
+
 
 
 interface OneListingProps {
@@ -16,7 +16,7 @@ export function OneListing({listing}:OneListingProps){
 
 return (
     <main className="w-full h-full min-h-screen flex flex-col items-center justify-center">
-        <AddListingButton/>
+        
         <div className="w-full h-full flex flex-col items-center justify-center gap-2">
         <div className="w-[90%] h-full  flex flex-col lg:flex-row  items-center justify-center rounded-2xl m-2 gap-2 md:gap-1">
 

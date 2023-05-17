@@ -1,9 +1,6 @@
 // import { ClientSuspense, Link, useLocation } from "rakkasjs";
 
-import { useEffect, useState } from "react";
 import { RouteLinks } from "./RouteLinks";
-import { Menu, X } from "lucide-react";
-
 import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
 import { MobileViewSheet } from "./MobileViewSheet";
@@ -44,3 +41,4 @@ const Toolbar = ({}: ToolbarProps) => {
 };
 
 export default Toolbar;
+

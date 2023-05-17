@@ -37,6 +37,9 @@ const BreadCrumbs = ({}: breadcrumbsProps) => {
       {
         locations.map((item,idx)=>{
           const crumb_link  =getNewPathname(locations, idx)
+          if(crumb_link === ""){
+            return null
+          }
           return <Link 
           className="flex"
           style={{color:crumb_link===location?"purple":""}}
