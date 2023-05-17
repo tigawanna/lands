@@ -13,14 +13,15 @@ import { Mail, UserCircle } from "lucide-react";
 
 export function AdminSheet() {
     const { user} = useUserStore()
-    if (!user) {
-        return null
-    }
-    const img_url = makeImageUrl("staff", user?.id, user?.avatar)
+    // if (!user) {
+    //     return null
+    // }
+// @ts-expect-error
+const img_url = makeImageUrl("staff", user?.id, user?.avatar)
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="bg-transparent">
+        <Button variant="ghost" className="">
                   {img_url ? 
                   <Image
                       alt="admin image"
@@ -42,8 +43,8 @@ export function AdminSheet() {
             {img_url ? <Image alt="admin image"
             src={img_url} width={100} height={100}
             className="rounded-full w-20 h-20 aspect-square" /> : <UserCircle className='w-20 h-20' />}
-            <h3 className="flex gap-2"><Mail/>{user.username}</h3> 
-            <h3>{user.email}</h3> 
+            <h3 className="flex gap-2"><Mail/>{user?.username}</h3> 
+            <h3>{user?.email}</h3> 
         </div>
 
         <SheetFooter>
