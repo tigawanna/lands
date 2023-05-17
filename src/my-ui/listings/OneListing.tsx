@@ -26,7 +26,7 @@ return (
                     record_id={listing.id}
                 />
 
-                <div className="font-serif p-5 w-[90%] lg:w-[50%] h-full border shadow-lg rounded-lg">
+                <div className="font-serif p-5 w-[90%] mt-10 md:mt-1 lg:w-[50%] h-full border shadow-lg rounded-lg">
                     <div className="flex items-center justify-start gap-5">
                         <h1 className="text-2xl font-bold">{listing.location}</h1>
                         <p className="font-semibold font-sans text-2xl text-purple-900">

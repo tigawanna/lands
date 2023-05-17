@@ -40,7 +40,7 @@ return (
 
         <div className=" p-3">
             <h1 className="text-2xl font-bold">{listing.location}</h1>
-            <p className="text-sm line-clamp-3 font-serif  py-1">{listing.description}</p>
+            <p className="text-xs line-clamp-3 font-serif  py-1">{listing.description}</p>
 
             <p className="text-sm rounded-lg border-t">{listing.amenities?.size}</p>
             <p className="font-semibold font-sans text-lg text-purple-900">

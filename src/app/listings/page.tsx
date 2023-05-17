@@ -22,7 +22,7 @@ const user =cookies().get("pb_auth")?.value
 return (
  <div className='w-full min-h-screen h-full flex items-start justify-center'>
         {(user)&&<AddListingButton />}
-        <div className='w-[90%] p-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  gap-2 lg:gap-4'>
+        <div className='w-[90%] p-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 lg:gap-4'>
 
             {
                 listings.items.map((listing) => {

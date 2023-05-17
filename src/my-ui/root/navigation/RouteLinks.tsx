@@ -26,7 +26,7 @@ export const RouteLinks = ({mobile = false,user}: RoutesProps) => {
       )}
       
       )}
-      {(user && user.id)&&<RouteLink mobile={mobile} url="/admin" Icon={UserCog} name="admin"/>}
+      {(user && user.id)&&<RouteLink mobile={mobile} url="/admin/new" Icon={UserCog} name="admin"/>}
     </nav>
   );
 };
