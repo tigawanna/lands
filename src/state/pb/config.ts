@@ -6,15 +6,15 @@ import { useUserStore } from "../zustand/user";
 export const pb = new PocketBase(pb_url);
 
 
-pb.beforeSend = function (url, reqConfig) {
-  // For list of the possible reqConfig properties check
-  // https://developer.mozilla.org/en-US/docs/Web/API/fetch#options
-  fetch(url, {
-    cache: "no-cache",
-  })
+// pb.beforeSend = function (url, reqConfig) {
+//   // For list of the possible reqConfig properties check
+//   // https://developer.mozilla.org/en-US/docs/Web/API/fetch#options
+//   fetch(url, {
+//     cache: "no-cache",
+//   })
 
-  return reqConfig;
-};
+//   return reqConfig;
+// };
 export async function getUser() {
   try {
     pb.authStore.loadFromCookie(document?.cookie ?? "");
