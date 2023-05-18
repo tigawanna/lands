@@ -22,10 +22,6 @@ interface LatLngExp {
 }
 
 const ReactLeafletMapCard = ({coords,display_only,setMapLocation}: ReactLeafletMapCardProps) => {
-  const initialLocation= useRef(coords)
-
-  // const { position } = useGeoLocation();
-  // const [pos, setPos] = useState(() => coords ?? position);
 
   const [zoom, SetZoom] = useState(15);
 

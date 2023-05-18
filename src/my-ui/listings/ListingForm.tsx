@@ -22,7 +22,7 @@ const ReactLeafletMapCard = dynamic(() => import('../location/ReactLeafletMapCar
 
 
 interface ListingFormProps {
-    label:string
+label:string
     listing?:PBListings
 }
 type FetcherReturn = Awaited<ReturnType<typeof createListing>>;
@@ -214,7 +214,7 @@ return (
                 />
             </div>
 
-            <div className="w-[90%] p-5 flex flex-row  items-center justify-center">
+            <div className="w-[100%] flex flex-row  z-20 items-center justify-center">
                 <ReactLeafletMapCard
                     coords={{ lat: input.latitude, lng: input.longitude }}
                     setMapLocation={setMapLocation}

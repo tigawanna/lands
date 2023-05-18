@@ -1,4 +1,4 @@
-import { useUserStore } from "@/state/zustand/user";
+
 import { Button } from "../../../../components/ui/button";
 
 import {
@@ -10,14 +10,15 @@ import {
 import { logoutUser, makeImageUrl } from "@/state/pb/config";
 import Image from "next/image";
 import { Mail, UserCircle } from "lucide-react";
+import { PBUserRecord } from "@/state/user";
 
-export function AdminSheet() {
-    const { user} = useUserStore()
-    // if (!user) {
-    //     return null
-    // }
-// @ts-expect-error
-const img_url = makeImageUrl("staff", user?.id, user?.avatar)
+
+interface AdminSheetProps {
+  user?: PBUserRecord
+}
+export function AdminSheet({user}:AdminSheetProps) {
+
+const img_url = user?makeImageUrl("staff", user?.id, user?.avatar):null
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -48,10 +49,11 @@ const img_url = makeImageUrl("staff", user?.id, user?.avatar)
         </div>
 
         <SheetFooter>
-          <Button 
+          {user&&<Button 
           onClick={()=>logoutUser()}
-          variant="outline">logout</Button>
-        </SheetFooter>
+          variant="outline">logout</Button>}        
+          
+    </SheetFooter>
       </SheetContent>
     </Sheet>
   );

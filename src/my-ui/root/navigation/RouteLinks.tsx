@@ -10,6 +10,7 @@ interface RoutesProps {
 }
 
 export const RouteLinks = ({mobile = false,user}: RoutesProps) => {
+  // console.log("user in route links  ==== ",user)
   const links =[
     {name:"home",url:"/",Icon:Home},
     {name:"listings",url:"/listings",Icon:ListIcon},
@@ -18,15 +19,16 @@ export const RouteLinks = ({mobile = false,user}: RoutesProps) => {
   return (
     <nav className="w-full md:w-fit  h-full  flex flex-col md:flex-row  items-center justify-cen gap-2 px-2 ">
       {links.map((link)=>{ 
-        if ((!user|| (user && user.id)) && link.name==="admin"){
-          return null
-        }
-        return(
+      return(
         <RouteLink key={link.name} mobile={mobile} url={link.url} Icon={link.Icon} name={link.name}/>
       )}
       
       )}
-      {(user && user.id)&&<RouteLink mobile={mobile} url="/admin/new" Icon={UserCog} name="admin"/>}
+      {user &&<RouteLink mobile={mobile} url="/admin/new" Icon={UserCog} name="admin"/>}
+      {/* {!user&&<div className="bg-red-500 h-5">hello</div>}
+      {user&&<div className="bg-green-500 h-5">hello</div>} */}
+
+
     </nav>
   );
 };
@@ -43,7 +45,8 @@ export function RouteLink({mobile,url,Icon,name}:RouteLinkProps){
   if(mobile){
     return(
       <Close asChild className="w-full flex items-center justify-center border-t p-3 ">
-        <Link href={url} className="hover:text-purple-700 underline flex items-center justify-center gap-2"><Icon/>{name}</Link>
+        <Link href={url} className="hover:text-purple-700 underline flex items-center justify-center gap-2">
+          <Icon/>{name}</Link>
       </Close>
     )
   }

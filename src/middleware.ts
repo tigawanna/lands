@@ -6,6 +6,7 @@ import { logNormal, logSuccess } from './state/utils/pretty';
 export async function middleware(request: NextRequest) {
   const cookie = request.cookies.get('pb_auth')?.value;
   const response = NextResponse.next();
+//   console.log("this is middleware")
   
   if (!cookie && !request.nextUrl.pathname.startsWith('/auth')) {
         return NextResponse.rewrite(new URL('/auth', request.url));
@@ -13,14 +14,14 @@ export async function middleware(request: NextRequest) {
  if (cookie && request.nextUrl.pathname.startsWith('/auth')) {
         return NextResponse.rewrite(new URL(request.nextUrl.origin));
  }
-logNormal(" next origin   ===  ",request.nextUrl.origin,request.url)
 
+logNormal(" next origin   ===  ",request.nextUrl.origin,request.url)
 logSuccess("cookies  ===  ",cookie)
  return response;
 }
 
 export const config = {
     matcher: [
-        '/admin','/auth',
+        '/admin/(.*)','/auth',
     ],
 };

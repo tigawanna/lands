@@ -61,7 +61,7 @@ const { error, handleChange, input ,setError } = useFormHook<ILoginUser>({
 
 return (
   <div
-    className="w-[90%] md:w-[50%] border shadow rounded-lg p-5"
+    className="w-[95%] md:w-[50%] border shadow rounded-lg p-5"
     {...props}>
     <h1 className="text-3xl font-bold p-5 ">
       Login

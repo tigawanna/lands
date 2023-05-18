@@ -1,22 +1,18 @@
 "use clinet"
 
+
 import { makeImageUrl } from "@/state/pb/config";
-import { useUserStore } from "@/state/zustand/user";
+import { PBUserRecord } from "@/state/user";
 import { UserCircle } from "lucide-react";
 import Image from "next/image";
 
 
 interface AdminSectionProps {
-
+    user?: PBUserRecord
 }
 
-export function AdminSection({}:AdminSectionProps){
-const {user,updateUser} = useUserStore()
-
-if(!user){
-    return null
-}
-const img_url = makeImageUrl("staff", user?.id , user?.avatar)
+export function AdminSection({user}:AdminSectionProps){
+const img_url = user?makeImageUrl("staff", user?.id , user?.avatar):null
 return (
  <div 
     className='w-full h-full flex items-center justify-center'>

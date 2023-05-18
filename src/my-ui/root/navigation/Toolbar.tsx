@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
 import { MobileViewSheet } from "./MobileViewSheet";
 import { PBUserRecord } from "@/state/user";
-import { useEffect, useState } from "react";
+
 
 
 
@@ -15,11 +15,7 @@ interface ToolbarProps {
 }
 
 function Toolbar({user}: ToolbarProps){
-  // const [show, setShoe] = useState(user && user.id)
-  // useEffect(()=>{
-  //   setShoe(user && user.id)
-  // },[user?.id])
-  // console.log("show admin url ???", show)
+
 
 return (
     <div className="w-full h-14 flex items-center justify-start p-1 font-serif sticky top-0 z-30 bg-secondary">
@@ -37,7 +33,7 @@ return (
 
       <nav className="w-full px-3 hidden md:flex items-center justify-end ">
         <RouteLinks user={user}/>
-      {(user && user.id) &&<AdminSheet/>}
+      {(user && user.id) &&<AdminSheet user={user}/>}
  
       </nav>
 

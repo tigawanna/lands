@@ -67,7 +67,7 @@ return (
             </div>
 
             <div className="w-full min-h-[300px] flex flex-row  items-center justify-center">
-                <div className="w-[100%] md:w-[70%] p-5 ">
+                <div className="w-[100%] md:w-[70%] p-5 z-20">
                 <ReactLocationWrapper coords={{ lat: listing.latitude, lng: listing.longitude}}/>
                 </div>
             </div>

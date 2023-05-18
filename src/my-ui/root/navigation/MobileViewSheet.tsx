@@ -4,12 +4,17 @@ import {
   SheetTrigger,
   SheetContent,
   Sheet,
+  SheetFooter,
 } from "../../../../components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, UserCircle } from "lucide-react";
 import Link from "next/link";
 import { AdminSheet } from "./AdminSheet";
 import { RouteLinks } from "./RouteLinks";
 import { PBUserRecord } from "@/state/user";
+
+import { logoutUser, makeImageUrl } from "@/state/pb/config";
+import { Button } from "../../../../components/ui/button";
+import Image from "next/image";
 
 
 interface MobileViewSheetProps {
@@ -17,8 +22,7 @@ interface MobileViewSheetProps {
 }
 
 export function MobileViewSheet({user}:MobileViewSheetProps) {
-
-
+const img_url = user ? makeImageUrl("staff", user?.id, user?.avatar) : null
   return (
     <Sheet>
       <SheetTrigger asChild >
@@ -33,18 +37,27 @@ export function MobileViewSheet({user}:MobileViewSheetProps) {
           Real Estates
         </Link>
 
-        <RouteLinks mobile={true}/>
-        <div className="flex items-center justify-center p-2 rounded-2xl border 
+        <RouteLinks mobile={true} user={user}/>
+        {/* <div className="flex items-center justify-center p-2 rounded-2xl border 
         font-bold text-accent-foreground">
-          {(user && user.id) &&<AdminSheet />}
-         </div>
+          {user &&<AdminSheet user={user}/>}
+         </div> */}
 
 
-        {/* <SheetFooter>
-          <Button 
-          onClick={()=>logoutUser()}
-          variant="outline">logout</Button>
-        </SheetFooter> */}
+        <SheetFooter >
+{user&&<div className="h-full gap-5 flex flex-col w-full items-center justify-center">
+            {img_url ?
+              <Image
+                alt="admin image"
+                src={img_url}
+                width={100} height={100}
+                className="rounded-xl w-20 h-20" /> : <UserCircle className='w-20 h-20' />}
+            <Button
+              onClick={() => logoutUser()}
+              variant="outline">logout</Button>
+          </div>}
+
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
