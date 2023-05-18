@@ -8,13 +8,15 @@ import { ScrollArea } from "../../../components/ui/scroll-area";
 
 
 
+
+
 interface OneListingProps {
  listing:PBListings
 
 }
 
 export function OneListing({listing}:OneListingProps){
-console.log("listings ========> ", listing)
+
 return (
     <main className="w-full h-full min-h-screen flex flex-col items-center justify-center">
         
@@ -74,3 +76,7 @@ return (
     </main>
 );
 }
+
+
+
+

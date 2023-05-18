@@ -7,7 +7,7 @@ import { PBUserRecord } from '@/state/user'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Welcome to real estates',
+  title: 'Real estates',
   description: 'Find your dream property',
 }
 
