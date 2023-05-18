@@ -14,7 +14,7 @@ interface OneListingProps {
 }
 
 export function OneListing({listing}:OneListingProps){
-
+console.log("listings ========> ", listing)
 return (
     <main className="w-full h-full min-h-screen flex flex-col items-center justify-center">
         
@@ -58,7 +58,8 @@ return (
             </div>
             <div className="w-[95%] p-2 ">
                 <ScrollArea className="font-serif h-[40%] w-full rounded-md border-b border-t p-5">
-                    <p>{listing.description}</p>
+                    <div dangerouslySetInnerHTML={{__html:listing.description}}/>
+                    {/* <p>{listing.description}</p> */}
                 </ScrollArea>
 
             </div>

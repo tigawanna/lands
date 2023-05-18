@@ -10,6 +10,7 @@ export default async function page({}:pageProps){
 
 return (
  <div className='w-full min-h-screen h-full flex items-center justify-center'>
+
         <div className="bg-gray-100">
             <h1 className="text-4xl font-bold text-center py-8">Real Estates</h1>
             <p className="text-center py-4 px-8">

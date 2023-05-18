@@ -23,10 +23,10 @@ export default async function page({params,searchParams}:pageProps) {
 // console.log("page params / search params === ",params,searchParams)
 const page = searchParams?.page?parseInt(searchParams?.page):1
 // console.log("page  ==== ",page)
-const listings = await getPbListings({ filter:"", page, perPage:2 })
+const listings = await getPbListings({ filter:"", page, perPage:10 })
 const { cookies } = await server_component_pb()
 const user = cookies().get("pb_auth")?.value
-
+    console.log("listings", listings)
 
     if (listings instanceof Error) {
         return <ErrorOutput error={listings} />

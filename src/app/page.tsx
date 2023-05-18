@@ -6,7 +6,7 @@ import { getPbListings } from '@/state/pb/api/listings'
 
 
 export default async function Home() {
-  const listings = await getPbListings({ filter_id: "", page: 1, perPage: 4 })
+  const listings = await getPbListings({ filter:"", page: 1, perPage: 10 })
 
   if (listings instanceof Error) {
     return <ErrorOutput error={listings} />
