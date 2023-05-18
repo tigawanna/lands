@@ -38,7 +38,7 @@ return (
             />
         </div>
 
-        <div className=" p-3">
+        <div className="w-full flex flex-col p-3 max-w-[90%] gap-1">
             <h1 className="text-2xl font-bold">{listing.location}</h1>
             <p className="text-xs line-clamp-3 font-serif  py-1">{listing.description}</p>
 

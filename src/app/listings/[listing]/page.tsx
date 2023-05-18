@@ -1,4 +1,11 @@
-import { ListingCard } from "@/my-ui/listings/ListingCard";
+export const dynamic = 'auto';
+export const dynamicParams = true;
+export const revalidate = 30;
+export const fetchCache = 'auto';
+export const runtime = 'nodejs';
+export const preferredRegion = 'all';
+
+
 import { OneListing } from "@/my-ui/listings/OneListing";
 import { ErrorOutput } from "@/my-ui/shared/wrappers/ErrorOutput";
 import { getOneListing, getPbListings } from "@/state/pb/api/listings";

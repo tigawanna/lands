@@ -11,11 +11,13 @@ export function Collapsable({text}:CollapsableProps){
     // console.log("hidden ====  ",hideDetails)
 return (
  <div className='w-full h-full flex items-center justify-center'>
+        {hideDetails && <ChevronDown className="h-4 w-4" onClick={() => setHideDetails(!hideDetails)} />}
+        {!hideDetails && <ChevronUp className="h-4 w-4" onClick={() => setHideDetails(!hideDetails)} />}
+        
         <p className={hideDetails ? "text-sm line-clamp-5 mt-4 w-full animate-in slide-in-from-top" : "text-sm mt-4 w-full animate-in slide-out-from-bottom"}>
             {text}
         </p>
-        {hideDetails&&<ChevronDown className="h-4 w-4" onClick={() => setHideDetails(!hideDetails)} />}
-        {!hideDetails &&<ChevronUp className="h-4 w-4" onClick={() => setHideDetails(!hideDetails)} />}
+      
 
  </div>
 );

@@ -1,53 +1,48 @@
 "use client"
-import Link from "next/link";
+import { PBListings } from "@/state/pb/api/listings";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import { URLSearchParams } from "url";
+import { ListResult } from "pocketbase";
+import ReactPaginate from "react-paginate";
+
 
 interface ListingsPagintionProps {
-
+    listings:ListResult<PBListings>
 }
 
-export function ListingsPagintion({}:ListingsPagintionProps){
+export function ListingsPagintion({listings}:ListingsPagintionProps){
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams()!;
+   
 
-    // Get a new searchParams string by merging the current
-    // searchParams with a provided key/value pair
-    // const createQueryString = useCallback(
-    //     (name: string, value: string) => {
-    //         const params = new URLSearchParams();
-    //         params.set(name, value);
-    //         return params.toString();
-    //     },
-    //     [searchParams],
-    // );
+    interface HandlePageClickEvent{
+        selected:number
+    }
+
+    const handlePageClick = ({selected}:HandlePageClickEvent) => {
+        // console.log("event  ==== ",event)
+        const new_page = selected+1
+        router.push(
+            pathname + '?' + "page" + "=" + new_page
+        )
+    };
 
 return (
- <div className='w-full h-full flex items-center justify-center gap-5'>
-        <p>new page</p>
+ <div className='w-full h-full flex items-center justify-center '>
 
-        {/* using useRouter */}
-        <button
-            onClick={() => {
-                // <pathname>?sort=asc
-                router.push(pathname + '?' + "page" + "=2");
-            }}
-        >
-            ASC
-        </button>
 
-        {/* using <Link> */}
-        {/* <Link
-            href={
-                // <pathname>?sort=desc
-                pathname + '?' + createQueryString('page', '2')
-            }
-        >
-            DESC
-        </Link> */}
+
+        <ReactPaginate 
+            className="flex justify-center gap-2 sticky bottom-1 p-2"
+        pageCount={listings.totalPages}
+        onPageChange={handlePageClick}
+        nextLabel={<ChevronRight/>}
+        previousLabel={<ChevronLeft/>}
+     
+        // pageRangeDisplayed={5}
+        />
  </div>
 );
 }

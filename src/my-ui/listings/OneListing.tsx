@@ -4,6 +4,7 @@ import { Icons } from "../shared/wrappers/icons";
 import { ReactLocationWrapper } from "../location/ReactLocationWrapper";
 import { NextCarrousel } from "../shared/wrappers/NextCarrousel";
 import { Collapsable } from "../shared/wrappers/Collapsable";
+import { ScrollArea } from "../../../components/ui/scroll-area";
 
 
 
@@ -26,14 +27,15 @@ return (
                     record_id={listing.id}
                 />
 
-                <div className="font-serif p-5 w-[90%] mt-10 md:mt-1 lg:w-[50%] h-full border shadow-lg rounded-lg">
+                <div className="font-serif p-5 w-[90%] mt-1 lg:w-[50%] h-full border shadow-lg rounded-lg">
                     <div className="flex items-center justify-start gap-5">
                         <h1 className="text-2xl font-bold">{listing.location}</h1>
                         <p className="font-semibold font-sans text-2xl text-purple-900">
                             {listing.price.toLocaleString("en-US")} Ksh
                         </p>
                     </div>
-                        <Collapsable text={listing.description}/>
+                    
+                        {/* <Collapsable text={listing.description}/> */}
     
                     <div className="border-t p-1 m-1 ">
                         <p className="text-sm flex font-semibold">
@@ -54,9 +56,15 @@ return (
                     </div>
                 </div>
             </div>
+            <div className="w-[95%] p-2 ">
+                <ScrollArea className="font-serif h-[40%] w-full rounded-md border-b border-t p-5">
+                    <p>{listing.description}</p>
+                </ScrollArea>
+
+            </div>
 
             <div className="w-full min-h-[300px] flex flex-row  items-center justify-center">
-                <div className="w-[95%] md:w-[70%] p-5 ">
+                <div className="w-[100%] md:w-[70%] p-5 ">
                 <ReactLocationWrapper coords={{ lat: listing.latitude, lng: listing.longitude}}/>
                 </div>
             </div>

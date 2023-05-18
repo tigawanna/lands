@@ -110,15 +110,17 @@ export async function searchListing(keyword: string) {
 
 
 export interface GetPbListingsParams{
-    filter_id: string;
+    filter: string;
     perPage: number;
     page: number;
 }
 
 export const getPbListings = async (params:GetPbListingsParams) => {
  try {
+  // pb.autoCancellation(false)
     const resultList = await pb.collection('listings').getList<PBListings>(params.page, params.perPage, {
       // filter: 'created >= "2022-01-01 00:00:00" && someField1 != someField2',
+      filter: params.filter,
       sort:'-created',
       expand:"owner"
     });
@@ -132,6 +134,7 @@ export const getPbListings = async (params:GetPbListingsParams) => {
 
 export async function getOneListing(id: string) {
 try { 
+  // pb.autoCancellation(false)
     const record = await pb.collection('listings').getOne<PBListings>(id, {
       expand: 'owner',
     });
