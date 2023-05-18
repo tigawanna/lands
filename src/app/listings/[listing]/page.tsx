@@ -17,7 +17,8 @@ type Props = {
         [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params: { listing }, searchParams }: Props, parent?: ResolvingMetadata,): Promise<Metadata> {
+
+export async function generateMetadata({ params: { listing }, searchParams }: Props): Promise<Metadata> {
     const listings = await getOneListing(listing);
     if(listings instanceof Error){
         return {

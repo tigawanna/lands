@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ImagePlus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
