@@ -1,12 +1,7 @@
 
+import { Dialog, DialogTrigger, DialogContent } from "@radix-ui/react-dialog";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Edit } from "lucide-react";
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "../../../components/ui/dialog"
-
-import { ScrollArea } from "../../../components/ui/scroll-area"
 
 interface DialodWrapperProps {
 children: React.ReactNode

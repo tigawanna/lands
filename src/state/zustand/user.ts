@@ -27,7 +27,7 @@ export const useUserStore = create<IUserStore>()(
           set((state) => ({ user: new_user }));
         },
         fetchUser: async () => {
-          const response = await agnosticUserAuth();
+          return 
           // const data = await response.json();
           // set((state) => ({ user: data }));
         },

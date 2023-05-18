@@ -64,6 +64,7 @@ export const ImageInput = <T,>({
         return { ...prev, [prop]: pics };
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pics]);
 
   // console.log("input ==== ", input.images);

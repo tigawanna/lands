@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useUserStore } from "@/state/zustand/user";
 import { pb } from "../config";
 import { useEffect } from "react";

@@ -14,7 +14,7 @@ return (
         <div className="bg-gray-100">
             <h1 className="text-4xl font-bold text-center py-8">Real Estates</h1>
             <p className="text-center py-4 px-8">
-                We offer a wide range of properties that are perfect for building your dream home or starting your own business. Our properties are located in some of the most beautiful and scenic areas in the country, with breathtaking views and natural surroundings. Whether you're looking for a small lot or a large parcel of land, we have something to suit your needs.
+                We offer a wide range of properties that are perfect for building your dream home or starting your own business. Our properties are located in some of the most beautiful and scenic areas in the country, with breathtaking views and natural surroundings. Whether you are looking for a small lot or a large parcel of land, we have something to suit your needs.
             </p>
             {/* <div className="flex justify-center items-center py-8">
                 <Image src="/land-big.webp" alt="Land" width={500} height={300} />

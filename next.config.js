@@ -4,6 +4,7 @@ const nextConfig = {
     serverActions: true,
 
   },
+  reactStrictMode:false,
   images: {
     domains: ["127.0.0.1", "tigawanna-pocketbase.fly.dev"],
   },

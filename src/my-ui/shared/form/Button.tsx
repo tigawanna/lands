@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   node?: React.ReactNode;
 }
 
+// eslint-disable-next-line react/display-name
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, isLoading, label, node, ...props }, ref) => {
     const base_style = twMerge(
